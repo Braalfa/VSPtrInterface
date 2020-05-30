@@ -6,6 +6,7 @@
 #include <QRadioButton>
 #include <QTableView>
 #include "client.h"
+#include "dialog.h"
 namespace Ui {
 class MainWindow;
 }
@@ -17,14 +18,15 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private:
     QPushButton *runBtn;
     QPushButton *serverSettingsBtn;
     QRadioButton *localBtn;
     QRadioButton *serverBtn;
     QTableView *tableview;
+    Dialog *dialog;
     Client client;
-
-private:
     Ui::MainWindow *ui;
 private slots:
     void onRunBtn();

@@ -1,11 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dialog.h"
+#include "heap.h"
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     this->client= *(new Client());
+    dialog = new Dialog(this, client);
 
     ui->setupUi(this);
     runBtn=ui->runBtn;
@@ -27,7 +31,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::onRunBtn()
 {
-
+    heap* h= new heap(tableview);
+    if(!localBtn->isChecked()){
+        int result =client.logIn();
+        QMessageBox message;
+        if(result=-1){
+            message.setIcon(QMessageBox::Warning);
+            message.setText("Connection Failed");
+            message.exec();
+        }
+    }
 }
 
 void MainWindow::onLocalBtn()
@@ -46,8 +59,7 @@ void MainWindow::onServerBtn()
 
 void MainWindow::onSettingsServer()
 {
-    Dialog *d = new Dialog(this, client);
-    d->open();
+    dialog->open();
 }
 
 MainWindow::~MainWindow()

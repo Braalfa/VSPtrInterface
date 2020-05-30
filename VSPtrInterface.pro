@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-05-28T01:26:26
+# Project created by QtCreator 2020-05-30T01:21:12
 #
 #-------------------------------------------------
 
@@ -28,17 +28,32 @@ SOURCES += \
         mainwindow.cpp \
     client.cpp \
     dialog.cpp \
-    jsoncpp.cpp
+    jsoncpp.cpp \
+    heap.cpp
 
 HEADERS += \
         mainwindow.h \
     client.h \
     dialog.h \
-    json.h
+    json-forwards.h \
+    json.h \
+    heap.h
 
 FORMS += \
         mainwindow.ui \
     dialog.ui
 
--DCMAKE_TOOLCHAIN_FILE=/home/bryan/vcpkg/scripts/buildsystems/vcpkg.cmake
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/release/ -lhl++
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/debug/ -lhl++
+else:unix: LIBS += -L$$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/ -lhl++
 
+INCLUDEPATH += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src
+DEPENDPATH += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/release/libhl++.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/debug/libhl++.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/release/hl++.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/debug/hl++.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/libhl++.a
+
+QT += sql

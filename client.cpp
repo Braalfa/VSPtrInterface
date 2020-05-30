@@ -99,7 +99,12 @@ int Client::logIn()
     }
 
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(std::stoi(port));
+
+    try{
+        serv_addr.sin_port = htons(std::stoi(port));
+    }catch(std::invalid_argument& e){
+        return -1;
+    }
 
     // Convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr)<=0)

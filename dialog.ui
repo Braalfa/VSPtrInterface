@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="box">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -81,7 +81,7 @@
     <string>Password</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="id">
+  <widget class="QLineEdit" name="ip">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -146,7 +146,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>box</sender>
    <signal>accepted()</signal>
    <receiver>Dialog</receiver>
    <slot>accept()</slot>
@@ -162,7 +162,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>box</sender>
    <signal>rejected()</signal>
    <receiver>Dialog</receiver>
    <slot>reject()</slot>

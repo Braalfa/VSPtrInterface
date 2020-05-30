@@ -24,7 +24,7 @@ private:
     QLineEdit *pass;
     QDialogButtonBox *box;
     Client client;
-
+private slots:
     void setSettings();
 };
 
