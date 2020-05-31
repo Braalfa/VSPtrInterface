@@ -7,6 +7,8 @@
 #include <QTableWidget>
 #include "client.h"
 #include "dialog.h"
+#include "heap.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -27,6 +29,7 @@ private:
     QTableWidget *tableview;
     Dialog *dialog;
     Client client;
+    Heap *heap;
     Ui::MainWindow *ui;
 private slots:
     void onRunBtn();

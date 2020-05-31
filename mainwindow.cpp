@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     localBtn->setChecked(true);
     serverBtn->setChecked(false);
-
+    this->heap=new Heap(tableview);
 
 }
 
@@ -36,7 +36,6 @@ void MainWindow::onRunBtn()
 {
     localBtn->setEnabled(false);
     serverBtn->setEnabled(false);
-    heap* h= new heap(tableview);
     if(!localBtn->isChecked()){
         int result =client.logIn();
         QMessageBox message;
@@ -47,7 +46,7 @@ void MainWindow::onRunBtn()
         }
     }
 
-    h->addVSptr("1   ","yeeeeeeeeeeeeeeeeeeeeeeet","3","4");
+    heap->addVSptr("1","eet","3","4");
 }
 
 void MainWindow::onLocalBtn()

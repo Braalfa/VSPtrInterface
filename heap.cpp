@@ -7,19 +7,32 @@
 #include <QVariant>
 #include <QSqlRecord>
 #include <QSqlQuery>
-heap::heap(QTableWidget *tableWidget)
+#include <QStringList>
+
+Heap::Heap(QTableWidget *tableWidget)
 {
+    this->tableWidget=tableWidget;
+    QStringList headers= *new QStringList;
+    headers.append("Id");
+    headers.append("Address");
+    headers.append("Type");
+    headers.append("Data");
+    headers.append("References");
+
+    tableWidget->setHorizontalHeaderLabels(headers);
 }
 
 
-void heap::addVSptr(string id, string address, string type, string data){
-    QTableWidgetItem *idItem = new QTableWidgetItem(id);
-    QTableWidgetItem *addressItem = new QTableWidgetItem(address);
-    QTableWidgetItem *typeItem = new QTableWidgetItem(type);
-    QTableWidgetItem *dataItem = new QTableWidgetItem(data);
+void Heap::addVSptr(string id, string address, string type, string data){
+
+    QTableWidgetItem *idItem = new QTableWidgetItem(QString::fromStdString(id));
+    QTableWidgetItem *addressItem = new QTableWidgetItem(QString::fromStdString(address));
+    QTableWidgetItem *typeItem = new QTableWidgetItem(QString::fromStdString(type));
+    QTableWidgetItem *dataItem = new QTableWidgetItem(QString::fromStdString(data));
+
 
     int row=tableWidget->rowCount();
-
+    tableWidget->setRowCount(row+1);
     tableWidget->setItem(row,0,idItem);
     tableWidget->setItem(row,1,addressItem);
     tableWidget->setItem(row,2,typeItem);
@@ -28,27 +41,27 @@ void heap::addVSptr(string id, string address, string type, string data){
 
 }
 
-void heap::deleteVSptr(string id){
+void Heap::deleteVSptr(string id){
 
     tableWidget->removeRow(this->findRow(id));
 }
 
-void heap::addRef(string id){
+void Heap::addRef(string id){
     int row=this->findRow(id);
-    tableWidget->setItem(row,4,new QTableWidgetItem(tableWidget->item(i,0)->text().toInt()+1));
+    tableWidget->setItem(row,4,new QTableWidgetItem(tableWidget->item(row,0)->text().toInt()+1));
 }
 
-void heap::deleteRef(string id){
+void Heap::deleteRef(string id){
     int row=this->findRow(id);
-    tableWidget->setItem(row,4,new QTableWidgetItem(tableWidget->item(i,0)->text().toInt()-1));
+    tableWidget->setItem(row,4,new QTableWidgetItem(tableWidget->item(row,0)->text().toInt()-1));
 }
 
-int heap::findRow(string id){
+int Heap::findRow(string id){
     QString text;
     int row=-1;
     for(int i=0;i<tableWidget->rowCount();i++){
         text=tableWidget->item(i,0)->text();
-        if(text=QString::fromStdString(id)){
+        if(text==QString::fromStdString(id)){
             row= i;
         }
     }

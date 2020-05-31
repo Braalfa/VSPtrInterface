@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class heap
+class Heap
 {
 
 private:
@@ -15,11 +15,13 @@ private:
     QSqlTableModel *model;
 
 public:
-    heap(QTableWidget *tableWidget);
+    Heap(QTableWidget *tableWidget);
     void addVSptr(string id, string address, string type, string data);
     void deleteVSptr(string id);
     void addRef(string id);
     void deleteRef(string id);
+    int findRow(string id);
+
 };
 
 #endif // HEAP_H
