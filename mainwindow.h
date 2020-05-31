@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QRadioButton>
-#include <QTableView>
+#include <QTableWidget>
 #include "client.h"
 #include "dialog.h"
 namespace Ui {
@@ -24,7 +24,7 @@ private:
     QPushButton *serverSettingsBtn;
     QRadioButton *localBtn;
     QRadioButton *serverBtn;
-    QTableView *tableview;
+    QTableWidget *tableview;
     Dialog *dialog;
     Client client;
     Ui::MainWindow *ui;

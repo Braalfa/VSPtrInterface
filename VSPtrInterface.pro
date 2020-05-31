@@ -56,4 +56,6 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/..
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/debug/hl++.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../../../Downloads/hashlibpp_0_3_4/hashlib2plus/trunk/src/libhl++.a
 
+
+
 QT += sql

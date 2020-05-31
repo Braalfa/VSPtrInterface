@@ -1,6 +1,6 @@
 #ifndef HEAP_H
 #define HEAP_H
-#include <QTableView>
+#include <QTableWidget>
 #include <string>
 #include <QSqlTableModel>
 #include <QObject>
@@ -11,11 +11,11 @@ class heap
 {
 
 private:
-    QTableView *tableView;
+    QTableWidget *tableWidget;
     QSqlTableModel *model;
 
 public:
-    heap(QTableView *tableview);
+    heap(QTableWidget *tableWidget);
     void addVSptr(string id, string address, string type, string data);
     void deleteVSptr(string id);
     void addRef(string id);

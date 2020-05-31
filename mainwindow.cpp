@@ -16,7 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
     serverSettingsBtn=ui->serverSettingsBtn;
     localBtn=ui->localBtn;
     serverBtn=ui->serverBtn;
-    tableview=ui->tableView;
+    tableview=ui->tableWidget;
+
+    tableview->setRowCount(0);
+    tableview->setColumnCount(5);
 
     connect(runBtn, SIGNAL (clicked()),this, SLOT (onRunBtn()));
     connect(serverSettingsBtn, SIGNAL (clicked()),this, SLOT (onSettingsServer()));
@@ -31,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::onRunBtn()
 {
+    localBtn->setEnabled(false);
+    serverBtn->setEnabled(false);
     heap* h= new heap(tableview);
     if(!localBtn->isChecked()){
         int result =client.logIn();
@@ -41,6 +46,8 @@ void MainWindow::onRunBtn()
             message.exec();
         }
     }
+
+    h->addVSptr("1   ","yeeeeeeeeeeeeeeeeeeeeeeet","3","4");
 }
 
 void MainWindow::onLocalBtn()

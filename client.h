@@ -6,6 +6,7 @@ using namespace std;
 class Client
 {
 public:
+
     Client();
     void sendStrMessage(string messageSt);
     string askAnswer();
@@ -16,7 +17,9 @@ public:
     void update(string id, string value);
     int logIn();
     string newVSptr(string data, string type);
+
 private:
+
     string password;
     string user;
     string ip;
