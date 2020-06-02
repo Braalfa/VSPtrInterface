@@ -45,8 +45,12 @@ void MainWindow::onRunBtn()
             message.exec();
         }
     }
+    heap->addVSptr("3","eet","3","4");
 
     heap->addVSptr("1","eet","3","4");
+    heap->addVSptr("2","eet","3","4");
+
+    heap->deleteVSptr("1");
 }
 
 void MainWindow::onLocalBtn()

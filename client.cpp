@@ -43,6 +43,10 @@ void Client::update(string id, string value){
     this->sendStrMessage("update;"+id+";"+value+";");
 }
 
+void Client::getType(string id, string value){
+    this->sendStrMessage("get-type;"+id+";");
+}
+
 Json::Value toJson(string message){
     Json::Value val;
     Json::Reader reader;

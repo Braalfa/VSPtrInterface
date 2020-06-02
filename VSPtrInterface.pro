@@ -29,7 +29,11 @@ SOURCES += \
     client.cpp \
     dialog.cpp \
     jsoncpp.cpp \
-    heap.cpp
+    heap.cpp \
+    ../VSCODE/VSPtr.cpp \
+    ../VSCODE/Node.cpp \
+    ../VSCODE/List.cpp \
+    ../VSCODE/GarbageCollector.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,7 +41,11 @@ HEADERS += \
     dialog.h \
     json-forwards.h \
     json.h \
-    heap.h
+    heap.h \
+    ../VSCODE/VSPtr.h \
+    ../VSCODE/Node.h \
+    ../VSCODE/List.h \
+    ../VSCODE/GarbageCollector.h
 
 FORMS += \
         mainwindow.ui \

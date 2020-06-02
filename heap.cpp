@@ -42,7 +42,6 @@ void Heap::addVSptr(string id, string address, string type, string data){
 }
 
 void Heap::deleteVSptr(string id){
-
     tableWidget->removeRow(this->findRow(id));
 }
 
