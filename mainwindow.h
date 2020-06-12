@@ -5,7 +5,7 @@
 #include <QPushButton>
 #include <QRadioButton>
 #include <QTableWidget>
-#include "client.h"
+#include <client.h>
 #include "dialog.h"
 #include "heap.h"
 
@@ -18,23 +18,27 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    void hiloTableVi();
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private:
-    QPushButton *runBtn;
+
     QPushButton *serverSettingsBtn;
     QRadioButton *localBtn;
     QRadioButton *serverBtn;
     QTableWidget *tableview;
+    QPushButton *run;
     Dialog *dialog;
     Client client;
-    Heap *heap;
     Ui::MainWindow *ui;
+
 private slots:
-    void onRunBtn();
+
+    void updateTableView();
     void onLocalBtn();
     void onServerBtn();
+    void runT();
     void onSettingsServer();
 };
 

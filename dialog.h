@@ -1,10 +1,13 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 #include <QLineEdit>
-#include <QDialogButtonBox>
-#include <QDialog>
-#include "client.h"
 
+#include "QDialogButtonBox"
+#include "QDialog"
+#include "client.h"
+#include "GarbageCollector.h"
+
+#include <QRadioButton>
 namespace Ui {
 class Dialog;
 }
@@ -14,7 +17,8 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    Dialog(QWidget *parent, Client client);
+    Dialog(QWidget *parent, Client *client);
+    bool connectionSucces;
     ~Dialog();
 private:
     Ui::Dialog *ui;
@@ -22,10 +26,14 @@ private:
     QLineEdit *port;
     QLineEdit *user;
     QLineEdit *pass;
+    Client *client;
+    QRadioButton *localBtn;
+    QRadioButton *remoteBtn;
     QDialogButtonBox *box;
-    Client client;
+    bool testPort();
+
 private slots:
-    void setSettings();
+    int setSettings();
 };
 
 #endif // DIALOG_H
