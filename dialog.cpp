@@ -3,6 +3,11 @@
 #include <QRadioButton>
 #include "ui_dialog.h"
 
+/**
+ *Abre la ventana donde se modifican los parametros
+ * @param parent
+ * @param client
+ */
 Dialog::Dialog(QWidget *parent,  Client *client):
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -19,7 +24,10 @@ Dialog::Dialog(QWidget *parent,  Client *client):
 
     box->connect(box, SIGNAL (accepted()),this, SLOT (setSettings()));
 }
-
+/**
+ * Modifica los labels segun el valor que ponemos en el label para la creacion del servidor
+ * @return
+ */
 int Dialog::setSettings(){
     int result=-1;
     if(testPort()){
@@ -44,7 +52,9 @@ bool Dialog::testPort()
     while (it != s.end() && std::isdigit(*it)) ++it;
     return !s.empty() && it == s.end();
 }
-
+/**
+ * Eliminar la ventana del Dialog
+ */
 
 Dialog::~Dialog()
 {

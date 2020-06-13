@@ -10,7 +10,10 @@
 
 GarbageType GarbageCollector::type;
 
-
+/**
+ *
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -51,20 +54,26 @@ MainWindow::MainWindow(QWidget *parent) :
     std::thread first(&MainWindow::hiloTableVi, this);
     first.join();
 }
-
+/**
+ * Hila para actualizar la tableViw que se encarga de simular el heao
+ */
 void MainWindow::hiloTableVi()
 {
     this_thread::sleep_for (chrono::seconds(4));
     updateTableView();
 
 }
-
+/**
+ *
+ */
 void MainWindow::runT(){
     VSPtr<int> v;
     VSPtr<int>::New();
 }
 
-
+/**
+ * Boton para camnair a garbageLocal
+ */
 void MainWindow::onLocalBtn()
 {
     localBtn->setChecked(true);
@@ -72,14 +81,18 @@ void MainWindow::onLocalBtn()
     GarbageCollector::setType(Local);
 
 }
-
+/**
+ * Boton para modifcar al garbageRemoto
+ */
 void MainWindow::onServerBtn()
 {
     localBtn->setChecked(false);
     serverBtn->setChecked(true);
     GarbageCollector::setType(Remote);
 }
-
+/**
+ * Configura el servidor para manejo local
+ */
 void MainWindow::onSettingsServer()
 {
     dialog->open();
@@ -91,7 +104,9 @@ void MainWindow::onSettingsServer()
 }
 
 
-
+/**
+ * Actualiza el valor de la tableViw
+ */
 void MainWindow::updateTableView(){
     Heap heap = * Heap::getInstance();
     int length =heap.idList.largo;

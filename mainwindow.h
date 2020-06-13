@@ -9,6 +9,10 @@
 #include "dialog.h"
 #include "heap.h"
 
+/**
+ * Clase principal la cual se encarga de mostrar los botones principlaes y da la opcion de modificar el garbage collector
+ * entre local y remoto ademas muestra graficamente como funciona el HEAP
+ */
 namespace Ui {
 class MainWindow;
 }
