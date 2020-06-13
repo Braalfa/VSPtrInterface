@@ -8,15 +8,10 @@
 #include "GarbageCollector.h"
 
 #include <QRadioButton>
-
-
-
 namespace Ui {
-    class Dialog;
+class Dialog;
 }
-/**
- * Ventana que se abre para escribir los parametros del servior ip,el puerto la contraseña...
- */
+
 class Dialog : public QDialog
 {
     Q_OBJECT

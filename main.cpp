@@ -1,12 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
-
-/**
- * Muestra la pantalla principal del programa
- * @param argc
- * @param argv
- * @return
- */
+#include "GarbageCollector.h"
+#include "List.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

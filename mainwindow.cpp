@@ -10,10 +10,7 @@
 
 GarbageType GarbageCollector::type;
 
-/**
- *
- * @param parent
- */
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -52,28 +49,29 @@ MainWindow::MainWindow(QWidget *parent) :
     serverBtn->setChecked(false);
     GarbageCollector::setType(Local);
     std::thread first(&MainWindow::hiloTableVi, this);
-    first.join();
+    first.detach();
 }
-/**
- * Hila para actualizar la tableViw que se encarga de simular el heao
- */
+
 void MainWindow::hiloTableVi()
 {
-    this_thread::sleep_for (chrono::seconds(4));
-    updateTableView();
-
+    while (true) {
+        this_thread::sleep_for (chrono::milliseconds(300));
+        updateTableView();
+    }
 }
-/**
- *
- */
+
 void MainWindow::runT(){
-    VSPtr<int> v;
-    VSPtr<int>::New();
+    VSPtr<int> v=VSPtr<int>::New();
+    v=7;
+    VSPtr<int> j=VSPtr<int>::New();
+    j=8;
+    VSPtr<int> m=VSPtr<int>::New();
+    m=9;
+    v=j;
+    m=v;
+    v=10;
 }
 
-/**
- * Boton para camnair a garbageLocal
- */
 void MainWindow::onLocalBtn()
 {
     localBtn->setChecked(true);
@@ -81,18 +79,14 @@ void MainWindow::onLocalBtn()
     GarbageCollector::setType(Local);
 
 }
-/**
- * Boton para modifcar al garbageRemoto
- */
+
 void MainWindow::onServerBtn()
 {
     localBtn->setChecked(false);
     serverBtn->setChecked(true);
     GarbageCollector::setType(Remote);
 }
-/**
- * Configura el servidor para manejo local
- */
+
 void MainWindow::onSettingsServer()
 {
     dialog->open();
@@ -104,19 +98,17 @@ void MainWindow::onSettingsServer()
 }
 
 
-/**
- * Actualiza el valor de la tableViw
- */
+
 void MainWindow::updateTableView(){
     Heap heap = * Heap::getInstance();
     int length =heap.idList.largo;
     tableview->setRowCount(length);
     for(int i =0; i<heap.idList.largo; i++){
-        tableview->setItem( i, 0, new QTableWidgetItem(QString::fromStdString("")));
-        tableview->setItem( i, 1, new QTableWidgetItem(QString::fromStdString(heap.addreesList.getNodoPos(i).getValue())));
-        tableview->setItem( i, 2, new QTableWidgetItem(QString::fromStdString(heap.typeList.getNodoPos(i).getValue())));
-        tableview->setItem( i, 3, new QTableWidgetItem(QString::fromStdString(heap.dataList.getNodoPos(i).getValue())));
-        tableview->setItem( i, 4, new QTableWidgetItem(QString::fromStdString(heap.referencesList.getNodoPos(i).getValue())));
+        tableview->setItem( i, 0, new QTableWidgetItem(QString::fromStdString(heap.idList.getNodoPos(i)->getValue())));
+        tableview->setItem( i, 1, new QTableWidgetItem(QString::fromStdString(heap.addreesList.getNodoPos(i)->getValue())));
+        tableview->setItem( i, 2, new QTableWidgetItem(QString::fromStdString(heap.typeList.getNodoPos(i)->getValue())));
+        tableview->setItem( i, 3, new QTableWidgetItem(QString::fromStdString(heap.dataList.getNodoPos(i)->getValue())));
+        tableview->setItem( i, 4, new QTableWidgetItem(QString::fromStdString(heap.referencesList.getNodoPos(i)->getValue())));
     }
 }
 

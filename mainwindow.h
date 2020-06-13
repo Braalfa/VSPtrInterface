@@ -8,11 +8,10 @@
 #include <client.h>
 #include "dialog.h"
 #include "heap.h"
+#include <thread>
 
-/**
- * Clase principal la cual se encarga de mostrar los botones principlaes y da la opcion de modificar el garbage collector
- * entre local y remoto ademas muestra graficamente como funciona el HEAP
- */
+using namespace std;
+
 namespace Ui {
 class MainWindow;
 }
@@ -27,7 +26,6 @@ public:
     ~MainWindow();
 
 private:
-
     QPushButton *serverSettingsBtn;
     QRadioButton *localBtn;
     QRadioButton *serverBtn;
